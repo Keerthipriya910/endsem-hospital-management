@@ -3,14 +3,17 @@ name: Deploy Frontend
 on:
   push:
     branches:
-      - main
+      - main   # or master
+
+permissions:
+  contents: write   # IMPORTANT
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Setup Node
@@ -18,7 +21,7 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install packages
+      - name: Install dependencies
         run: npm install
 
       - name: Build project
